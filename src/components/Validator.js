@@ -4,6 +4,7 @@ import InputFields from './InputFields';
 export default function Validator () {
   const [ password, setPassword ] = useState('');
   const [ charCount, setCharCount ] = useState(false);
+  const [ uppercase, setUppercase ] = useState(false);
 
   useEffect(() => {
     //get email
@@ -11,14 +12,17 @@ export default function Validator () {
 
   useEffect(() => {
     validateCharCount();
+    validateUpperCase();
   }, [password]);
 
-  function validateCharCount () {
-    if (password.length >= 8 && password.length <= 72) {
-      setCharCount(true);
-    } else {
-      setCharCount(false);
-    }
+  function validateCharCount() {
+    setCharCount(password.length >= 8 && password.length <= 72);
+  }
+
+  function validateUpperCase() {
+    let isCapital = /[A-Z]/;
+
+    setUppercase(isCapital.test(password));
   }
 
   return (
@@ -26,7 +30,7 @@ export default function Validator () {
       <InputFields password={password} setPassword={setPassword}/>
       <ul>
         <li id="test-character-count" className={charCount ? "line-through" : "no-line"}>8-72 Characters</li>
-        <li></li>
+        <li id="test-uppercase" className={uppercase ? "line-through" : "no-line"}>1 Uppercase Character</li>
         <li></li>
         <li></li>
         <li></li>
