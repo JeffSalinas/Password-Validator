@@ -38,3 +38,7 @@
   margin: 0;
   font-size: 15px;
 }
+
+.line-through {
+  text-decoration: line-through;
+}
