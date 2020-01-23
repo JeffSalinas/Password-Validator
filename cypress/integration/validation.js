@@ -46,7 +46,7 @@ describe('Validator Tests', () => {
   })
 
   describe('1 Uppercase Character', () => {
-    it('should accept password with 1 uppercase character', () => {
+    it('should accept password with at least 1 uppercase character', () => {
       cy.visit('/')
       cy.get('#password-input').type('helloWorld').then(() => {
         cy.get('#test-uppercase').should('have.css', 'text-decoration', 'line-through solid rgb(0, 0, 0)')
@@ -57,6 +57,38 @@ describe('Validator Tests', () => {
       cy.visit('/')
       cy.get('#password-input').type('helloworld').then(() => {
         cy.get('#test-uppercase').should('have.css', 'text-decoration', 'none solid rgb(0, 0, 0)')
+      })
+    })
+  })
+
+  describe('1 Lowercase Character', () => {
+    it('should accept password with at least 1 lowercase character', () => {
+      cy.visit('/')
+      cy.get('#password-input').type('helloworld').then(() => {
+        cy.get('#test-lowercase').should('have.css', 'text-decoration', 'line-through solid rgb(0, 0, 0)')
+      })
+    })
+  
+    it('should not accept password with all uppercase characters', () => {
+      cy.visit('/')
+      cy.get('#password-input').type('HELLOWORLD').then(() => {
+        cy.get('#test-lowercase').should('have.css', 'text-decoration', 'none solid rgb(0, 0, 0)')
+      })
+    })
+  })
+
+  describe('1 Number', () => {
+    it('should accept password with at least 1 number', () => {
+      cy.visit('/')
+      cy.get('#password-input').type('helloworld1').then(() => {
+        cy.get('#test-number').should('have.css', 'text-decoration', 'line-through solid rgb(0, 0, 0)')
+      })
+    })
+  
+    it('should not accept password with all characters', () => {
+      cy.visit('/')
+      cy.get('#password-input').type('helloWorld').then(() => {
+        cy.get('#test-number').should('have.css', 'text-decoration', 'none solid rgb(0, 0, 0)')
       })
     })
   })
