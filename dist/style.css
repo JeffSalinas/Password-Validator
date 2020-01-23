@@ -39,6 +39,10 @@
   font-size: 15px;
 }
 
+#password-toggle {
+  cursor: pointer;
+}
+
 .line-through {
   text-decoration: line-through;
 }
