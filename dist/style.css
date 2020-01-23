@@ -1,3 +1,40 @@
-#CSSTest {
-  color: red
+#root {
+  display: flex;
+  justify-content: center;
+}
+
+#input-container {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid #828282;
+  border-radius: 5px;
+}
+
+#password-title {
+  margin: 0 0 5px 0;
+}
+
+#password-input {
+  width: 300px;
+  height: 35px;
+  font-size: 15px;
+  border-radius: 5px;
+  border: none;
+  padding: 0 0 0 5px;
+}
+
+#toggle-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 35px;
+  background-color: #E5E5E5E5;
+  border-radius: 0 4px 4px 0;
+  border-left: 1px solid #828282;
+}
+
+#toggle-title {
+  margin: 0;
+  font-size: 15px;
 }
