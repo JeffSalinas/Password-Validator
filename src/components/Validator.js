@@ -6,6 +6,7 @@ export default function Validator () {
   const [ charCount, setCharCount ] = useState(false);
   const [ uppercase, setUppercase ] = useState(false);
   const [ lowercase, setLowercase ] = useState(false);
+  const [ number, setNumber ] = useState(false);
 
   useEffect(() => {
     //get email
@@ -15,6 +16,7 @@ export default function Validator () {
     validateCharCount();
     validateUppercase();
     validateLowercase();
+    validateNumber();
   }, [password]);
 
   function validateCharCount() {
@@ -33,6 +35,12 @@ export default function Validator () {
     setLowercase(isLower.test(password));
   }
 
+  function validateNumber() {
+    let isNumber = /[0-9]/;
+
+    setNumber(isNumber.test(password));
+  }
+
   return (
     <div>
       <InputFields password={password} setPassword={setPassword}/>
@@ -40,7 +48,7 @@ export default function Validator () {
         <li id="test-character-count" className={charCount ? "line-through" : "no-line"}>8-72 Characters</li>
         <li id="test-uppercase" className={uppercase ? "line-through" : "no-line"}>1 Uppercase Character</li>
         <li id="test-lowercase" className={lowercase ? "line-through" : "no-line"}>1 Lowercase Character</li>
-        <li></li>
+        <li id="test-number" className={number ? "line-through" : "no-line"}>1 Number</li>
         <li></li>
       </ul>
     </div>
