@@ -5,6 +5,7 @@ export default function Validator () {
   const [ password, setPassword ] = useState('');
   const [ charCount, setCharCount ] = useState(false);
   const [ uppercase, setUppercase ] = useState(false);
+  const [ lowercase, setLowercase ] = useState(false);
 
   useEffect(() => {
     //get email
@@ -12,17 +13,24 @@ export default function Validator () {
 
   useEffect(() => {
     validateCharCount();
-    validateUpperCase();
+    validateUppercase();
+    validateLowercase();
   }, [password]);
 
   function validateCharCount() {
     setCharCount(password.length >= 8 && password.length <= 72);
   }
 
-  function validateUpperCase() {
+  function validateUppercase() {
     let isCapital = /[A-Z]/;
 
     setUppercase(isCapital.test(password));
+  }
+
+  function validateLowercase() {
+    let isLower = /[a-z]/;
+
+    setLowercase(isLower.test(password));
   }
 
   return (
@@ -31,7 +39,7 @@ export default function Validator () {
       <ul>
         <li id="test-character-count" className={charCount ? "line-through" : "no-line"}>8-72 Characters</li>
         <li id="test-uppercase" className={uppercase ? "line-through" : "no-line"}>1 Uppercase Character</li>
-        <li></li>
+        <li id="test-lowercase" className={lowercase ? "line-through" : "no-line"}>1 Lowercase Character</li>
         <li></li>
         <li></li>
       </ul>
