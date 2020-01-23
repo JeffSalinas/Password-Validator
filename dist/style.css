@@ -39,6 +39,21 @@
   font-size: 15px;
 }
 
+#password-toggle {
+  cursor: pointer;
+}
+
 .line-through {
   text-decoration: line-through;
+}
+
+ul {
+  list-style: none;
+}
+
+ul li::before {
+  content: "\2022";
+  color: #ff8b3d;
+  display: inline-block;
+  width: 10px; 
 }
