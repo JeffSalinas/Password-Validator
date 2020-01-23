@@ -49,14 +49,14 @@ describe('Validator Tests', () => {
     it('should accept password with 1 uppercase character', () => {
       cy.visit('/')
       cy.get('#password-input').type('helloWorld').then(() => {
-        cy.get('#test-character-count').should('have.css', 'text-decoration', 'line-through solid rgb(0, 0, 0)')
+        cy.get('#test-uppercase').should('have.css', 'text-decoration', 'line-through solid rgb(0, 0, 0)')
       })
     })
   
     it('should not accept password with all lowercase characters', () => {
       cy.visit('/')
       cy.get('#password-input').type('helloworld').then(() => {
-        cy.get('#test-character-count').should('have.css', 'text-decoration', 'none solid rgb(0, 0, 0)')
+        cy.get('#test-uppercase').should('have.css', 'text-decoration', 'none solid rgb(0, 0, 0)')
       })
     })
   })

@@ -1,32 +1,40 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import InputFields from './InputFields';
 
 export default function Validator () {
   const [ password, setPassword ] = useState('');
-  const [ isShown, setIsShown ] = useState(false);
+  const [ charCount, setCharCount ] = useState(false);
+  const [ uppercase, setUppercase ] = useState(false);
+
+  useEffect(() => {
+    //get email
+  }, []);
+
+  useEffect(() => {
+    validateCharCount();
+    validateUpperCase();
+  }, [password]);
+
+  function validateCharCount() {
+    setCharCount(password.length >= 8 && password.length <= 72);
+  }
+
+  function validateUpperCase() {
+    let isCapital = /[A-Z]/;
+
+    setUppercase(isCapital.test(password));
+  }
 
   return (
     <div>
-      <p id="password-title">Password</p>
-      <div id="input-container">
-        <input
-          id="password-input"
-          aria-label="Insert Password"
-          aria-required="true"
-          type={isShown ? 'text' : 'password'}
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <div id="toggle-container">
-          <input
-            id="password-toggle"
-            aria-label="Show Password"
-            type="checkbox"
-            checked={isShown}
-            onChange={() => setIsShown(!isShown)}
-          />
-          <p id="toggle-title">Show</p>
-        </div>
-      </div>
+      <InputFields password={password} setPassword={setPassword}/>
+      <ul>
+        <li id="test-character-count" className={charCount ? "line-through" : "no-line"}>8-72 Characters</li>
+        <li id="test-uppercase" className={uppercase ? "line-through" : "no-line"}>1 Uppercase Character</li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
     </div>
   )
 }
