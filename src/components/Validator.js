@@ -59,7 +59,7 @@ export default function Validator () {
       if (acc) return true;
 
       return wordSearch.test(password);
-    }, false)
+    }, false);
 
     setEmail(hasWord);
   }
