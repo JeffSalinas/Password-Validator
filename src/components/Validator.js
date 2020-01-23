@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 export default function Validator () {
+  const [ password, setPassword ] = useState('');
+  const [ isShown, setIsShown ] = useState(false);
 
   return (
     <div>
@@ -10,14 +12,17 @@ export default function Validator () {
           id="password-input"
           aria-label="Insert Password"
           aria-required="true"
-          type="text"
+          type={isShown ? 'text' : 'password'}
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
         <div id="toggle-container">
           <input
             id="password-toggle"
             aria-label="Show Password"
             type="checkbox"
-            checked={true}
+            checked={isShown}
+            onChange={() => setIsShown(!isShown)}
           />
           <p id="toggle-title">Show</p>
         </div>
